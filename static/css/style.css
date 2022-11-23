@@ -114,6 +114,11 @@ body {
     height: 3.2rem;
 }
 
+.genre-card-img {
+    height: 100px;
+    object-fit: cover;
+}
+
 /* ----- Footer -----*/
 
 .footer {
