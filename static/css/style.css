@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;700&family=Poppins:wght@300;400;700&display=swap');
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--black);
+    color: #ede7d9;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+/* -----Colors for CSS -----*/
+
+:root {
+    --black: #000000;
+    --carnelian: #bd1e1e;
+    --alabaster: #ede7d9;
+    --blackCoral: #5e6973;
+    --fulvous: #d98324;
+}
+
+.red-bg {
+    background-color: var(--carnelian);
+}
+
+/* ----- Navbar-----*/
+
+.navbar {
+    justify-content: center;
+}
+
+.dropdown-menu {
+    background-color: var(--carnelian);
+    color: var(--alabaster);
+}
+
+.nav-link:hover {
+    color: var(--alabaster);
+}
+
+.nav-item {
+    font-size: 1.2rem;
+}
+
+/* ----- Index page -----*/
+
+/* Hero section */
+#hero-section {
+    padding: 5.6rem;
+}
+
+.hero-image {
+    width: 350px;
+    height: auto;
+}
+
+.main-title {
+    font-family: 'Lato', sans-serif;
+    font-size: 5.6rem;
+    font-weight: 700;
+}
+
+.secundary-title {
+    font-size: 2.4rem;
+    font-weight: 400;
+}
+
+.third-title {
+    font-size: 1.6rem;
+    font-weight: 300;
+    padding: 2.5rem;
+    color: var(--blackCoral);
+}
+
+.btn-hero {
+    width: 150px;
+}
+
+/* Carousel section */
+#carousel-section {
+    padding: 5.6rem 0;
+}
+
+.owl-movie-listing {
+    height: 25vw;
+}
+
+.movie-image {
+    width: 400px;
+}
+
+/* Genre Section */
+#genres-section {
+    padding: 5.6rem 0;
+}
+
+.genre-card {
+    margin: 0 2px;
+    --bs-card-inner-border-radius: 0;
+    border-radius: 0;
+    border: none;
+}
+
+.genre-card-title {
+    height: 3.2rem;
+}
+
+/* ----- Footer -----*/
+
+.footer {
+    justify-content: center;
+}
+
+.genre-card-img {
+    height: 5rem;
+    object-fit: cover;
+}
+
+.footer-icon-container {
+    padding-top: 2rem;
+}
+
+.white-icon {
+    color: var(--alabaster);
+}
+
+.white-icon:hover {
+    opacity: 0.8;
+}
+
+/* Media  */
+@media screen and (min-width: 300px) {
+    .owl-book-listing {
+        width: 100%;
+        height: 36vw;
+        object-fit: cover;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .owl-movie-listing {
+        height: 18vw;
+    }
+}
