@@ -3,14 +3,7 @@ from django.views import generic
 from .models import Movie, Review, WatchlistItem, Genre
 
 
-def index(request):
-    """
-    View to return index.html as home page
-    """
-    return render(request, 'index.html')
-
-
-class MovieList(generic.ListView):
+class HomepageList(generic.ListView):
     """
     Looks for Movie model and returns list:
     approved = True ordered by created date on home page

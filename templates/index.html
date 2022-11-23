@@ -38,75 +38,101 @@
   </div>
 </section>
 
-<!-- Movie carousel section  -->
-<section id="carousel-section">
-  <h2 class="text-center">Newly added movies</h2>
-  <!-- Owl Carousel https://owlcarousel2.github.io/OwlCarousel2/ -->
-  <div class="owl-carousel owl-theme">
-    {% for movie in movie_list %}
-    <div class="item">
-      <div class="card h-100 card-home border-0">
-        <div class="card-body movie-listing-body">
-          <a href="{% url 'movie_details' movie.slug %}">
-            <img
-              class="card-img-top owl-movie-listing"
-              src=" {{ movie.movie_poster.url }}"
-              alt="{{ movie.title }} by {{ movie.director }} movie card"
-            />
-          </a>
+<!-- Test -->
+{% for post in post_list %}
+<div class="col-md-4">
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="image-container">
+        <img class="card-img-top" src="{{ movie.movie_poster.url }}" />
+        <div class="image-flash">
+          <p class="author">Director: {{ movie.director }}</p>
         </div>
       </div>
+      <a href="{% url 'movie_details' movie.slug  %}">
+        <h2 class="card-title">{{ movie.movie_title }}</h2>
+        <p class="card-text">{{ movie.synopsis }}</p>
+      </a>
+      <hr />
+      <p class="card-text text-muted h6">{{ movie.movie_created_on}}</p>
     </div>
-    {% endfor %}
   </div>
-</section>
-<!-- Genre Section -->
-<section id="genres-section">
-  <h3 class="text-center">Discover by genre</h3>
-  <!--Owl Carousel https://owlcarousel2.github.io/OwlCarousel2/-->
-  <div class="owl-carousel owl-theme">
-    {% for genre in genre_list %}
-    <div class="item">
-      <div class="card h-100 genre-card">
-        <div class="card-body p-0">
-          <a href="{% url 'genre_name' genre.slug %}">
-            <div
-              class="p-0 card-header genre-card-title d-flex align-items-center justify-content-center"
-            >
-              <h4 class="m-0 f-medium p-bold card-title text-center">
-                {{ genre.genre_name }}
-              </h4>
-            </div>
-            <img
-              class="card-img genre-card-img"
-              src=" {{ genre.genre_image.url }} "
-              alt="image associated with {{ genre.genre.name }}"
-            />
-          </a>
+</div>
+{% if forloop.counter|divisibleby:3 %}
+
+<div class="row">
+  {% endif %} {% endfor %}
+
+  <!-- Movie carousel section  -->
+  <section id="carousel-section">
+    <h2 class="text-center">Newly added movies</h2>
+    <!-- Owl Carousel https://owlcarousel2.github.io/OwlCarousel2/ -->
+    <div class="owl-carousel owl-theme">
+      {% for movie in movie_list %}
+      <div class="item">
+        <div class="card h-100 card-home border-0">
+          <div class="card-body movie-listing-body">
+            <a href="{% url 'movie_details' movie.slug %}">
+              <img
+                class="card-img-top owl-movie-listing"
+                src=" {{ movie.movie_poster.url }}"
+                alt="{{ movie.title }} by {{ movie.director }} movie card"
+              />
+            </a>
+          </div>
         </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
-  </div>
-</section>
-{% endblock %} {% block script %}
-<!-- Owl Carousel script with settings from https://owlcarousel2.github.io/OwlCarousel2/demos/basic.html-->
-<script>
-  $(".owl-carousel").owlCarousel({
-    loop: true,
-    margin: 10,
-    nav: true,
-    responsive: {
-      0: {
-        items: 1,
+  </section>
+  <!-- Genre Section -->
+  <section id="genres-section">
+    <h3 class="text-center">Discover by genre</h3>
+    <!--Owl Carousel https://owlcarousel2.github.io/OwlCarousel2/-->
+    <div class="owl-carousel owl-theme">
+      {% for genre in genre_list %}
+      <div class="item">
+        <div class="card h-100 genre-card">
+          <div class="card-body p-0">
+            <a href="{% url 'genre_details' genre.slug %}">
+              <div
+                class="p-0 card-header d-flex align-items-center justify-content-center"
+              >
+                <h4 class="m-0 f-medium p-bold card-title text-center">
+                  {{ genre.genre_name }}
+                </h4>
+              </div>
+              <img
+                class="card-img genre-card-img"
+                src=" {{ genre.genre_image.url }} "
+                alt="image associated with {{ genre.genre.name }}"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endblock %} {% block script %}
+  <!-- Owl Carousel script with settings from https://owlcarousel2.github.io/OwlCarousel2/demos/basic.html-->
+  <script>
+    $(".owl-carousel").owlCarousel({
+      loop: true,
+      margin: 10,
+      nav: true,
+      responsive: {
+        0: {
+          items: 1,
+        },
+        600: {
+          items: 4,
+        },
+        1000: {
+          items: 8,
+        },
       },
-      600: {
-        items: 4,
-      },
-      1000: {
-        items: 8,
-      },
-    },
-  });
-</script>
-{% endblock %}
+    });
+  </script>
+  {% endblock %}
+</div>
