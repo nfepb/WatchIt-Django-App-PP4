@@ -44,8 +44,6 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
-    'star_ratings',
-    'django_summernote',
     'movie',
 ]
 
