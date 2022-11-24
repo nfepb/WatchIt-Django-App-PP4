@@ -103,6 +103,10 @@ body {
     padding: 5.6rem 0;
 }
 
+.card {
+    background-color: transparent !important;
+}
+
 .genre-card {
     margin: 0 2px;
     --bs-card-inner-border-radius: 0;
@@ -122,8 +126,19 @@ body {
 /* ----- movie_details.html -----*/
 
 .movie-detail-image {
-    max-height: 12.5rem;
+    max-height: 25rem;
     width: auto;
+}
+
+.btn-action {
+    height: 2.4rem;
+    background-color: var(--carnelian);
+    color: var(--alabaster);
+}
+
+.btn-action:hover {
+    background-color: var(--alabaster);
+    color: var(--carnelian);
 }
 
 /* ----- Footer -----*/

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.db.models import Avg
 
 
 class Movie(models.Model):
@@ -34,7 +35,10 @@ class Movie(models.Model):
 
 # Return String representation in Django doc:
     def __str__(self):
-        return self.movie_title
+        return f"{self.movie_title}: {self.average_rating()}"
+
+    def average_rating(self) -> float:
+        return Rating.objects.filter(movie=self).aggregate(Avg("rating"))["rating__avg"] or 0
 
     def count_in_watchlists(self):
         """

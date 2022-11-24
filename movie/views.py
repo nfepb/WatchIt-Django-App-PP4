@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.views import generic
+from django.views import generic, View
 from .models import Movie, Review, WatchlistItem, Genre
 
 
@@ -43,6 +43,8 @@ class MovieDetails(generic.View):
     """
     Displays movie object from Movie model &
     reviews posted on this object.
+    Based on the I Think Therefore I Blog Project:
+    The Post Detail View - part 1
     """
 
     def get(self, request, slug, *args, **kwargs):
@@ -55,7 +57,7 @@ class MovieDetails(generic.View):
 
         return render(
             request,
-            'movie/movie_details.html',
+            'movie_details.html',
             {
                 'movie': movie,
                 'reviews': reviews,
