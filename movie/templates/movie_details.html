@@ -11,11 +11,19 @@
       <div
         class="col-auto mt-3 col-md-3 d-flex justify-content-md-end justify-content-lg-center"
       >
+        {% if "placeholder" in movie.movie_poster.url %}
         <img
-          class="card-img-top book-detail-image"
+          class="card-img-top movie-detail-image"
+          src="https://res.cloudinary.com/dknv0nxqz/image/upload/v1669311606/watchit/static/images/placeholder-img_ufi0rq.jpg"
+          alt="{{ movie.movie_title }} by {{ movie.director }} film cover with no poster."
+        />
+        {% else %}
+        <img
+          class="card-img-top movie-detail-image"
           src=" {{ movie.movie_poster.url }}"
           alt="{{ movie.movie_title }} by {{ movie.director }} movie details"
         />
+        {% endif %}
       </div>
       <div class="col-auto p-0 mt-3 col-md-6">
         <div class="row align-items-center">

@@ -39,7 +39,7 @@ class WatchlistList(generic.ListView):
     context_object_name = 'watchlist'
 
 
-class MovieDetails(generic.ListView):
+class MovieDetails(generic.View):
     """
     Displays movie object from Movie model &
     reviews posted on this object.
@@ -47,7 +47,7 @@ class MovieDetails(generic.ListView):
 
     def get(self, request, slug, *args, **kwargs):
         """
-        Gets full movie detail with approved reviews
+        Gets full movie detail with associated reviews
         """
         queryset = Movie.objects.filter(movie_approved=True)
         movie = get_object_or_404(queryset, slug=slug)
@@ -55,7 +55,7 @@ class MovieDetails(generic.ListView):
 
         return render(
             request,
-            'forum/movie_detail.html',
+            'movie/movie_details.html',
             {
                 'movie': movie,
                 'reviews': reviews,
@@ -66,8 +66,8 @@ class MovieDetails(generic.ListView):
 
 class GenreDetails(generic.View):
     """
-    Returns all the movie objects from the Movie model
-    filtered by a genre and with movie_approved = True
+    Returns all the genre object from the genre model
+    filtered by the genre category and with movie_approved = True
     """
 
     def get(self, request, slug, *args, **kwargs):
@@ -87,7 +87,7 @@ class GenreDetails(generic.View):
 
         return render(
             request,
-            'movie/genre.html',
+            'movie/genre_details.html',
             {
                 'movies': movies,
                 'genres': genres,

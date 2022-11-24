@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% load static %} {% block title %}
+<title>404 Page Not Found</title>
+{% endblock %} {% block content %}
+
+<section class="d-flex justify-content-center pt-3 pb-3">
+  <div class="row align-items-center min-vh-100">
+    <img
+      src="https://res.cloudinary.com/dknv0nxqz/image/upload/v1669311169/watchit/static/images/404-not-found_fysxol.jpg"
+      alt="404 Image with dynamite"
+      height="300"
+      width="auto"
+    />
+    <div class="container my-auto">
+      <div class="col-lg-4 col-md-8 col-12 mx-auto">
+        <div class="card z-index-0 fadeIn3 fadeInBottom">
+          <div class="card-header p-0 mt-n4 mx-3 z-index-2">
+            <div class="border-radius-lg py-3 pe-1">
+              <h4 class="mt-2 mb-0">Error 404</h4>
+              <div class="text-center">Page Not Found</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
