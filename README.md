@@ -1,10 +1,223 @@
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-Welcome nfepb,
+## **Introduction**
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+Welcome to WatchIt!,
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+WatchiIt is my fourth portfolio project that I have been working on in the Full Stack Developer Programme, as a student of the Code Institute. 
+
+The purpose of this project was a build a full-stack website based around a business logic used to control a centrally-owned dataset. The technologies used for this project are HTML, CSS, Python, and Django. Heroku Postgres is used as a relational database.
+
+WatchIt! is a website where anyone that enjoys watching a movie can look up movies they think is interesting to see what other website's user think of the said movie and how they grade it. WatchIt! also allows logged in users to add movies to their watchlist and add reviews on movies they have watched. 
+
+WhatchIt! is a fictional brand. This project is for educational purposes only.
+---
+
+## **User Experience Design - UXD** 
+
+A large part of the inspiration behind the planning for this project came from Jason James Garretts’s, “The Elements of User-Experience”.
+
+By keeping the user in mind throughout the design and development of the project, it would be easier to make the user experience a satisfying and cohesive.
+
+The planning of the project is broken into 5 planes,
+
+* [The Strategy Plane](#the-strategy-pane)
+* [The Scope Plane](#the-scope-plane)
+* [The Structure Plane](#the-structure-plane)
+* [The Skeleton Plane](#the-skeleton-plane)
+* [The Surface Plane](#the-surface-plane)
+
+---
+
+## **The Strategy Pane**
+
+### **App Creator's Goals**
+
+### User Stories
+
+To help in defining the most important benefits of the app and the features required to deliver this value, I created a flowchat that goes through the different stages of the app user. It starts with the visitor (as the user), and evolves into a connected user, which is also identified as a regular user. 
+
+[User Flowchart](./planning-docs/user-stories/images/user-flowchart.png)
+
+#### **Admin User Stories**
+
+#### **Site User Stories**
+
+#### **Logged-In User Stories**
+
+My user stories were obtained by doing research into other apps/websites and analyzing how the user was accompanied through their journey. The [IMDb](https://www.imdb.com/) and [AlloCiné](https://www.allocine.fr/) helped me define what were some of the critical features to get to a MVP, and which features were considered 'nice to have' for later development. 
+
+---
+
+## **The Scope Plane**
+
+In order to achieve the desired user & business goals, the following features will be included in this release:
+
+* Responsive navbar that will navigate to the various pages throughout the site
+* Home landing page with brief information about the movie review platform and links to the movie page 
+    * Movie page, with the latest posted movie content 
+    * Movie detail page, where logged-in users can post a review of the movie and grade it based on their experience watching it. 
+* Movie page, with a booking form to enquire with the cycling gym
+* Watchlist page, where logged-in users can add/remove movies from the list
+* Register/login feature using Django allauth
+
+Too many ideas, not enought time. Too much ambition for the defined deadline. This is the reason why. opted for a phased approach to help digest and define what I would work on in an initial deployment, and what would come in the later stage. 
+
+**Phase 1**
+- Define the critical features to satisfy the user stories:
+    - As a user I can easily understand the purpose of this website on the homepage so that I can easily understand the value proposition.
+    - As a user I can easily navigate through the website so that I can access the pages that I relevant for my usage.
+    - As a user I can browse a list of movie genres so that I can discover reviewed movies in a genre I am am interested in.
+    - As a user I can read more information about a movie in which I am interested in so that that I can discover more information or read other user's reviews of this book.
+    - As a user I can add movies to watchlist so that I can save movies that I wish to watch in the future. 
+    - As a user I can write a review for a movie so that so that I can share my opinion and rating of the movie. 
+    - As a user I can create a personal account so that so that I can review movies I have watched and save movies to my watchlist.
+    - As a user I can add a movie I upload to a genre so that the book is easily findable.
+    - As an admin I can create a new movie entry so that users can review the movie that does not yet exist on the website.
+    - As an admin I can create a new genre entry so that users can link movies to a genre and discover movies associated to this genre.
+    - As an admin I can approve or decline new movie additions created by users so that I can keep a clear database.
+
+---
+
+## **The Structure Plane**
+
+### **Color Palette**
+
+### **Fonts**
+
+### **Images**
+
+### **Database Design**
+
+SQLite was used throughout the development of the WatchIt! app. During deployment to a production environment, Heroku PostgreSQL was used.
+
+In order to support the functionalities defined in the user stories for each Epic, mapping the architecture became crucial. This helped foresee how we could get to an MVP.
+
+#### **Key Models**
+
+[Database Diagram](./documentation/schema/database-architecture.png)
+
+**User**
+
+* The User is created based on the User model, which is created by Allauth on registration.
+
+**Movie**
+
+* The Movie holds information about each movie entry in the database. Each product has a unique ID.
+* The Movie model is connected to the WatchlistItem model. This allows the user to add multiple movies to a single watchlist.
+* The movie includes the average_rating, which will hold the logic to calculate the average movie rating based on the reviews of the movie.  
+
+**Review**
+
+* Reviews can be posted by the users on the movies with this model
+* The Review model has a one-to-many relationship to the User model to obtain the username. One user can post multiple reviews. 
+* The Review model also is linked to the Movie model based on a one-to-many relationship. This allows one movie to have multiple reviews. 
+
+**WatchListItem**
+
+* The WatchListItem is used to allow the many-to-many relationship between the users and the movies. 
+* One user can have multiple movies in their watchlist through the movie lookup in the Movie model. 
+* One movie can be added to multiple users' watchlist through the user ID in the User model.
+
+---
+
+## **The Skeleton Plane**
+
+**Navbar Wireframes**
+
+**Homepage Wireframes**
+
+**Movie Detail Wireframes**
+
+**Register Wireframes**
+
+**Login Wireframes**
+
+---
+
+## **The Surface Plane**
+
+### **Features**
+
+---
+
+## **Technologies Used**
+
+| Technology | Comment |
+| :---: | --- |
+| [dbdiagram](https://dbdiagram.io/home) | Used to design the ERD for WatchIt! |
+| [Grammarly](https://www.grammarly.com/) |	Used to fix the grammar errors across the project. |
+| [Canva](https://www.canva.com/)	| Used to create the wireframes for the website for the different supports. |
+| [Coolors](https://coolors.co/) | Used to define the color palette for the website. |
+| [Github](https://github.com/) | Used as the development environment. |
+| [Pep8](https://peps.python.org/pep-0008/)	| Used to test my code for any issues or errors. |
+| [Django](https://www.djangoproject.com/) | Framework used to build the project and its apps. |
+| [Django Star Ratings](https://django-star-ratings.readthedocs.io/en/latest/) | |
+| [Python](https://www.python.org/) | Python is the core programming language used to write all of the code in this application to make it fully functional. |
+| [Heroku](https://dashboard.heroku.com/login) | Used to deploy the WatchIt! application. |
+| [Google Fonts](https://fonts.google.com/) | Used to add the ratings on the movies through the Djanog model. |
+| [Cloudinary](https://cloudinary.com/) | Used to store all of my static files and images. |
+| [jQuery](https://jquery.com/) | jQuery is required in order to use the Owl Carousel components. |
+| [Owl Carousel] | Used to display the movies and genres in a carousel. |
+
+
+---
+
+## **Testing**
+
+## ** Issues encountered**
+
+### Navbar
+
+Bootstrap was not allowing the items to be centered. What were looking to do:
+- Have the search bar centered at the top of the navbar on larger screens
+- Have the other navigation items displayed inline underneath the search function
+
+Instead, all the items were displayed on the 2 lines (as wanted), but on the right hand side of the screen. 
+
+### Index page
+On Screens size > 900px, content is aligning on the left, no longer on the center of the page.
+
+### Footer
+Footer did not allow to center the content.
+
+### Migration Error due to added slug fields
+django.db.utils.IntegrityError: could not create unique index "forum_genre_slug_key"
+DETAIL:  Key (slug)=(2022-11-21 19:25:15.303241+00:00) is duplicated.
+
+---
+
+## **Deployment**
+
+The master branch of this repository is the most current version and has been used for the deployed version of the site.
+
+The Code Institute student template was used to create this project.
+
+[Code Institute Full Template](https://github.com/Code-Institute-Org/gitpod-full-template)
+
+- Click the *Use This Template* button.
+- Give your repository a name, and description if you wish.
+- Click the *Create Repository from Template* to create your repository. 
+- Click the *Gitpod* button to create a gitpod workspace, this can take a few minutes.
+- When working on project using Gitpod, please open the workspace from Gitpod, this will open your previous workspace rather than creating a new one.
+Use the following commands to commit your work, 
+- `git add . ` - adds all modified files to a staging area.
+- `git commit -m "A short message exlaining your commit"` - commits all changes to a local repository.
+- `git push` - pushes all your commited changes to your Github repository.
+
+**Requirements**
+
+- [Python 3](https://www.python.org/downloads/)
+- [Pip](https://pypi.org/project/pip/)
+- [Git](https://git-scm.com/)
+- [Flask](https://flask.palletsprojects.com/en/2.2.x/)
+
+## Credits
+
+[Willem Van Onsem](https://stackoverflow.com/users/67579/willem-van-onsem) for his answer in Stackoverflow for [How to make an average from values of a foreign key in Django?](https://stackoverflow.com/questions/59479908/how-to-make-an-average-from-values-of-a-foreign-key-in-django)
+[Racool_studio](https://www.freepik.com/free-photo/delicious-popcorn_6543855.htm#query=pile%20movies&position=28&from_view=search&track=sph) for the image used in the hero image. 
+
+---
 
 ## Gitpod Reminders
 
@@ -33,6 +246,10 @@ To log into the Heroku toolbelt CLI:
 5. Paste in your API key when asked
 
 You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+
+---
+
+## **Credits**
 
 ------
 
