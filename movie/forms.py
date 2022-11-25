@@ -1,4 +1,4 @@
-from . models import Review, Movie
+from .models import Review, Movie
 from django import forms
 
 
@@ -30,5 +30,5 @@ class AddMovieForm(forms.ModelForm):
         movie model
         """
         model = Movie
-        fields = ('movie_title', 'director', 'poster',
+        fields = ('movie_title', 'director', 'movie_poster',
                   'synopsis', 'movie_genre')

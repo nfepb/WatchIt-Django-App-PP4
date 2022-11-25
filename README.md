@@ -158,7 +158,9 @@ In order to support the functionalities defined in the user stories for each Epi
 | [Google Fonts](https://fonts.google.com/) | Used to add the ratings on the movies through the Djanog model. |
 | [Cloudinary](https://cloudinary.com/) | Used to store all of my static files and images. |
 | [jQuery](https://jquery.com/) | jQuery is required in order to use the Owl Carousel components. |
-| [Owl Carousel] | Used to display the movies and genres in a carousel. |
+| [Owl Carousel](https://owlcarousel2.github.io/OwlCarousel2/) | Used to display the movies and genres in a carousel. |
+| [Django Crispy Form](https://django-crispy-forms.readthedocs.io/en/latest/index.html) | Used to control the rendering behavior of your Django forms. |
+| [Crispy Bootstrap 5](https://github.com/django-crispy-forms/crispy-bootstrap5) | Used for Bootstrap5 for django-crispy-forms. |
 
 
 ---

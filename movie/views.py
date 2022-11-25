@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404
-from django.views import generic, View
+from django.views.generic import ListView, View, CreateView
 from .models import Movie, Review, WatchlistItem, Genre
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import AddMovieForm, MovieForm
 
 
-class HomepageList(generic.ListView):
+class HomepageList(ListView):
     """
     Looks for Movie model and returns list:
     approved = True ordered by created date on home page
@@ -26,7 +28,7 @@ class HomepageList(generic.ListView):
         return context_data
 
 
-class WatchlistList(generic.ListView):
+class WatchlistList(ListView):
     """
     Looks for WatchlistItem model and returns list:
     movies approved = True ordered by added date on watchlist page
@@ -39,7 +41,7 @@ class WatchlistList(generic.ListView):
     context_object_name = 'watchlist'
 
 
-class MovieDetails(generic.View):
+class MovieDetails(View):
     """
     Displays movie object from Movie model &
     reviews posted on this object.
@@ -62,11 +64,43 @@ class MovieDetails(generic.View):
                 'movie': movie,
                 'reviews': reviews,
                 'reviewed': False,
+                'review_form': MovieForm()
+            },
+        )
+
+    def post(self, request, slug, *args, **kwargs):
+        """
+        Display Movie details with associated reviews
+        Current user can post a review form for approval
+        """
+        queryset = Movie.objects.filter(movie_approved=True)
+        movie = get_object_or_404(queryset, slug=slug)
+        reviews = movie.reviews.order_by('-review_created_on')
+
+        review_form = MovieForm(data=request.POST)
+        if review_form.is_valid():
+            review = review_form.save(commit=False)
+            review_form.instance.author = request.user
+            review_form.instance.reviewed_movie = movie
+            review.movie = movie
+            review.save()
+
+        else:
+            review_form = MovieForm()
+
+        return render(
+            request,
+            'movie/movie_details.html',
+            {
+                'movie': movie,
+                'reviews': reviews,
+                'reviewed': True,
+                'review_form': review_form
             },
         )
 
 
-class GenreDetails(generic.View):
+class GenreDetails(View):
     """
     Returns all the genre object from the genre model
     filtered by the genre category and with movie_approved = True
@@ -89,10 +123,20 @@ class GenreDetails(generic.View):
 
         return render(
             request,
-            'movie/genre_details.html',
+            'genre_details.html',
             {
                 'movies': movies,
                 'genres': genres,
                 'genre_object': genre_object
             },
         )
+
+
+class AddMovie(LoginRequiredMixin, CreateView):
+    """
+    View verifying if user is logged in before accessing
+    form template.
+    Calls AddMovieForm from forms.py
+    """
+    template_name = 'movie/add_movie.html'
+    form_class = AddMovieForm
