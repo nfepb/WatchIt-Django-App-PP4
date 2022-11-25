@@ -36,7 +36,7 @@
             </h2>
             <h4 class="text-md-start text-center">
               <!-- prettier-ignore -->
-              {{ movie.movie_genre }}
+              <a href="{% url 'genre_details' movie.movie_genre.slug %}">{{ movie.movie_genre }}</a>
             </h4>
           </div>
           <div class="row justify-content-center justify-content-md-start mt-3">

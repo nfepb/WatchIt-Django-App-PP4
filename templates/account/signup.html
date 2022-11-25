@@ -1,0 +1,57 @@
+{% extends "base.html" %} {% load i18n %} {% block head_title %} {% trans
+"Signup" %}{% endblock %} {% block title %}
+<title>Sign Up</title>
+{% endblock %} {% block content %}
+
+<section class="d-flex align-items-center justify-content-center py-3">
+  <div class="signup-container">
+    <div class="row">
+      <div
+        class="col-12 d-flex flex-column justify-content-center align-items-center"
+      >
+        <img
+          class="hero-image"
+          src="https://res.cloudinary.com/dknv0nxqz/image/upload/v1669404596/watchit/static/images/man-image-mime-with-movie-board_pkejfa.jpg"
+          alt="man with movie board"
+          height="400"
+          width="auto"
+        />
+      </div>
+      <div
+        class="col-12 d-flex flex-column justify-content-center align-items-center"
+      >
+        <h1>{% trans "Sign Up" %}</h1>
+        <h2 class="text-center">Discover your next movie...</h2>
+
+        <p class="text-center">
+          {% blocktrans %}Already have an account? Then please
+          <a href="{{ login_url }}">log in</a>.{% endblocktrans %}
+        </p>
+
+        <form
+          class="signup mb-3"
+          id="signup_form"
+          method="post"
+          action="{% url 'account_signup' %}"
+        >
+          {% csrf_token %} {{ form.as_p }} {% if redirect_field_value %}
+          <input
+            type="hidden"
+            name="{{ redirect_field_name }}"
+            value="{{ redirect_field_value }}"
+          />
+          {% endif %}
+          <div
+            class="flex-column d-flex justify-content-center align-items-center"
+          >
+            <button class="btn btn-styles btn-dark" type="submit">
+              {% trans "Sign Up" %}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

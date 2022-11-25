@@ -141,6 +141,12 @@ body {
     color: var(--carnelian);
 }
 
+/* ----- genre_details.html -----*/
+
+.small-text {
+    font-size: small;
+}
+
 /* ----- Footer -----*/
 
 .footer {
