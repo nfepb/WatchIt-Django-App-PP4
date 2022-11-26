@@ -1,5 +1,6 @@
-{% extends "base.html" %} {% load i18n %} {% load account socialaccount %} {%
-block head_title %}{% trans "Log In" %}{% endblock %} {% block title %}
+{% extends "base.html" %} {% load i18n %} {% load account socialaccount %}
+<!-- prettier-ignore -->
+{% block head_title %}{% trans "Log In" %} {% endblock %} {% block title %}
 <title>Log In</title>
 {% endblock %} {% block content %}
 
@@ -10,25 +11,26 @@ block head_title %}{% trans "Log In" %}{% endblock %} {% block title %}
         class="col-12 d-flex flex-column justify-content-center align-items-center"
       >
         <img
-          class="book-image-auth"
+          class="book-image-auth pt-5"
           src="https://res.cloudinary.com/dknv0nxqz/image/upload/v1668944494/watchit/static/images/hero-image-watchit_euj5ql.png"
           alt="image of a red carpet to enter cinema"
-          height="25vh"
+          height="250"
           width="auto"
         />
       </div>
       <div
         class="col-12 d-flex flex-column justify-content-center align-items-center"
       >
-        <h1>{% trans "Log In" %}</h1>
+        <h1>{% trans "Log In" %} to WatchIt!</h1>
         <h2 class="page-subtitle text-center">
           So many movie, so many options...
         </h2>
 
         <p class="text-center">
           {% blocktrans %}If you have not created an account yet, then pleases
-          <a class="links" href="{{ signup_url }}">sign up</a> first.{%
-          endblocktrans %}
+          <a class="link" href="{{ signup_url }}">sign up</a>
+          <!-- prettier-ignore -->
+          first.{% endblocktrans %}
         </p>
 
         <form class="login" method="POST" action="{% url 'account_login' %}">
