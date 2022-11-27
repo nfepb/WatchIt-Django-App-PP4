@@ -76,7 +76,9 @@ ROOT_URLCONF = 'watchit.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR,  os.path.join(BASE_DIR, 'templates', 'allauth')],
+        'DIRS': [TEMPLATES_DIR, os.path.join(
+            BASE_DIR, 'templates', 'allauth', 'movie/templates'
+            )],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -169,5 +169,28 @@ class AddMovie(LoginRequiredMixin, CreateView):
     form template.
     Calls AddMovieForm from forms.py
     """
-    template_name = 'movie/add_movie.html'
+    template_name = 'add_movie.html'
     form_class = AddMovieForm
+
+    def get_success_url(self):
+        """
+        sets the reverse url for the
+        successful addition of the book
+        to the database
+        """
+        return reverse('moviebox')
+
+    def form_valid(self, form):
+        """
+        validates the form and adds a success message
+        to the template once movie is successfully added
+        Sets the automatic slug for the object created
+        from the user input on the movie_title and director
+        fields
+        """
+        form = form.save(commit=False)
+        messages.success(
+            self.request,
+            'Thank you for adding a new movie. It has been flagged for validation!')
+        form.slug = slugify(form.movie_title + "-" + form.director)
+        return super().form_valid(form)
