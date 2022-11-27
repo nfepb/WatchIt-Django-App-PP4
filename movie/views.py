@@ -1,11 +1,14 @@
 from django.shortcuts import render, get_object_or_404, reverse
-from django.views.generic import ListView, View, CreateView
+from django.views.generic import (
+    ListView, View, CreateView, UpdateView, DeleteView)
 from .models import Movie, Review, WatchlistItem, Genre
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import AddMovieForm, MovieForm
 from django.utils.text import slugify
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
 
 
 class HomepageList(ListView):
@@ -93,7 +96,7 @@ class MovieDetails(View):
 
         return render(
             request,
-            'movie/movie_details.html',
+            'movie_details.html',
             {
                 'movie': movie,
                 'reviews': reviews,
@@ -219,3 +222,92 @@ class WatchlistMovie(View):
             movie.in_watchlists.add(request.user)
 
         return HttpResponseRedirect(reverse('movie_details', args=[slug]))
+
+
+class MyWatchlist(LoginRequiredMixin, CreateView):
+    """
+    Gets all the current users saved movies from watchlist
+    and all the user's reviews and displays them
+    on the template
+    If the user is logged in, the my_watchlist template
+    can be accessed
+    """
+
+    def get(self, request, *args, **kwargs):
+        """
+        Establishes the current user
+        Gets all the movies where in_watchlists =
+        current user
+        Gets all the reviews where the author =
+        current user
+        returns the user movies watchlisted and user reviews
+        and the current user username
+        """
+        username = request.user
+        user_watchlist = Movie.objects.filter(in_watchlists=request.user)
+        author = Review.objects.filter(author=username)
+        return render(
+            request, 'my_watchlist.html', {
+                'user_watchlist': user_watchlist,
+                'author': author,
+                'username': username,
+            })
+
+
+class EditReview(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    """
+    Logged in user can edit any reviews they posted
+    template is edit_review.html
+    reverse url is my_watchlist.html
+    """
+
+    model = Review
+    fields = [
+        'content',
+    ]
+    template_name = 'edit_review.html'
+    success_url = reverse_lazy('my_watchlist')
+    success_message = "You have updated your review succesfully!"
+
+    def get_context_data(self, **kwargs):
+        """
+        Get the object instance's movie title
+        """
+        context = super().get_context_data(**kwargs)
+        context['movie_title'] = self.object.reviewed_movie
+
+        return context
+
+    def form_valid(self, form):
+        """
+        Validate form
+        Save and return the new object
+        """
+        form.save()
+        return super().form_valid(form)
+
+
+class DeleteReview(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    """
+    Delete the current's user's review
+    template is delete_review.html
+    reverse url is my_watchlist.html
+    """
+    model = Review
+    success_url = reverse_lazy('my_watchlist')
+    success_message = "Review successfully deleted!"
+    template_name = 'delete_review.html'
+
+    def get_context_data(self, **kwargs):
+        """
+        Get and return the object instance movie_title,
+        content, current user's username,
+        review date created on
+        """
+        context = super().get_context_data(**kwargs)
+        context['reviewed_movie'] = self.object.reviewed_movie
+        context['content'] = self.object.content
+        context['user'] = self.object.author
+        context['date'] = self.object.review_created_on
+
+        return context

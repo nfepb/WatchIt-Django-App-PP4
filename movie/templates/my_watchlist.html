@@ -1,0 +1,136 @@
+<!-- prettier-ignore -->
+{% extends "base.html" %} {% load static %} {% block title %}
+<title>My Watchlist</title>
+{% endblock %}{% block content %}{% load ratings %}
+<section>
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10">
+      <h1 class="mt-5 mb-3">My Watchlist</h1>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10">
+      <h2 class="mb-5">Username: {{ user }}</h2>
+    </div>
+  </div>
+</section>
+
+<section class="pt-5 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10">
+      <h2 class="text-center">My Saved Movies</h2>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="row justify-content-center">
+      {% for movie in user_watchlist %}
+      <div class="col-12 col-md-4 col-lg-3 mb-3 mb-md-5">
+        <a href="{% url 'movie_details' movie.slug %}">
+          <div class="card h-100">
+            <div class="card-header">
+              <h2 class="mt-2 f-medium p-bold">
+                {{ movie.movie_title }}
+                <span class="orange-text f-medium p-bold"
+                  >by {{ movie.director }}</span
+                >
+              </h2>
+              <div class="star">
+                <!--https://django-star-ratings.readthedocs.io/en/latest/?badge=latest/#-->
+                {% ratings movie 12 12 read_only %}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4 d-flex align-items-center p-0">
+                <div class="card-body p-0">
+                  {% if "placeholder" in book.book_image.url %}
+                  <img
+                    class="card-img-top image-listing"
+                    src="https://res.cloudinary.com/dknv0nxqz/image/upload/v1669233111/watchit/static/images/placeholder-movie-poster_ybuigt.jpg"
+                    alt="{{ movie.movie_title }} by {{ movie.director }} film with no referenced poster"
+                  />
+                  {% else %}
+                  <img
+                    class="card-img-top image-listing"
+                    src=" {{ movie.movie_poster.url }}"
+                    alt="{{ movie.movie_title }} by {{ movie.director }} film reference"
+                  />
+                  {% endif %}
+                </div>
+              </div>
+              <div class="col-7 d-flex align-items-center">
+                <p class="f-small card-text">
+                  {{movie.synopsis | truncatewords:20}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      {% if forloop.counter|divisibleby:8 %}
+    </div>
+    <div class="row justify-content-center">
+      {% endif %} {% empty %}
+      <div class="col-12 col-md-8">
+        <h3 class="text-center">No Movies in the Watchlist</h3>
+        <p class="text-center">
+          To add movies to your watchlist, go to the movie page and click the
+          add icon to add the movie. Click it again to remove the movie from the
+          watchlist.
+        </p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="pt-5 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10">
+      <h2 class="text-center">My Reviews</h2>
+    </div>
+  </div>
+  <div class="row mx-2 justify-content-center">
+    {% for review in author %}
+    <div class="card mt-4 col-12 col-md-8">
+      <div class="card-body">
+        <div class="row py-2">
+          <div class="col-12 col-md-6">
+            <a href="{% url 'movie_details' review.reviewed_movie.slug %}"
+              ><h2 class="p-bold movie-link">{{ review.reviewed_movie }}</h2></a
+            >
+          </div>
+          <div class="col-12 col-md-6">
+            {% if review.review_approved is False %}
+            <div class="approval-tag">
+              <p class="text-center">Waiting on approval</p>
+            </div>
+            {% endif %}
+            <p>{{ review.review_created_on }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <p class="p-bold">review:</p>
+            <p>{{ review.content | linebreaks}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <a href=" {% url 'edit_review' review.pk %} ">
+              <button class="btn btn-action">Update</button>
+            </a>
+            <a href="{% url 'delete_review' review.pk %}">
+              <button class="btn btn-action">Delete</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12 col-md-8">
+      <h3>No reviews made yet</h3>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

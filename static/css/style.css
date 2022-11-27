@@ -70,6 +70,14 @@ a:hover {
     font-size: 1.2rem;
 }
 
+.f-small {
+    font-size: 12px;
+}
+
+.f-medium {
+    font-size: 1rem;
+}
+
 /* ----- Index page -----*/
 
 /* Hero section */
@@ -218,6 +226,13 @@ a:hover {
 
 .star .star-ratings-rating-user {
     display: none;
+}
+
+
+/* ----- My Watchlist -----*/
+
+.movie-link:hover {
+    color: var(--fulvous);
 }
 
 

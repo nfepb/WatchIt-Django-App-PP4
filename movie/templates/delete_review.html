@@ -1,0 +1,45 @@
+<!-- prettier-ignore -->
+{% extends "base.html" %} {% load static %}{% block title %}
+<title>Delete Review</title>
+{% endblock %} {% block content %} {% load crispy_forms_tags %}
+
+<section id="delete" class="pt-5 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 mt-5 mb-3b">
+      <h1 class="secundary-title">Delete Review</h1>
+      <h2 class="third-title">Are you sure you want to delete your review?</h2>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="card mt-4 col-12 col-md-8">
+      <div class="card-body">
+        <div class="row py-2">
+          <div class="col-12 col-md-6">
+            <h3>{{ reviewed_movie.movie_title }}</h3>
+          </div>
+          <div class="col-12 col-md-6">
+            <p>{{ date }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="review-body col">
+            <p class="p-bold">Posted as: {{ user.username }}</p>
+            <p class="p-bold">review:</p>
+            {{ content | linebreaks}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8">
+      <form method="post" style="margin-top: 1.3em">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-action">Delete Review</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

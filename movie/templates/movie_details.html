@@ -133,7 +133,22 @@
 <section id="reviews" class="pt-5 pb-5">
   <div class="row justify-content-center">
     <div class="col col-md-8">
-      {% if user.is_authenticated %}
+      {% if reviewed %}
+      <div
+        class="alert text-center alert-success alert-link alert-dismissible fade show user-alert"
+      >
+        Your review is awaiting approval. <br />
+        Checkout
+        <a href="{% url 'my_watchlist' %}">My Watchlist</a> to see your review
+        awaiting approval.
+        <button
+          type="button"
+          class="btn-close user-alert"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      {% else %} {% if user.is_authenticated %}
       <div>
         <h3 class="">Share your thoughts on this movie</h3>
         <p>Posting as: {{ user.username }}</p>
@@ -147,7 +162,7 @@
         Please <a href="{% url 'account_login' %}">Log In</a> or
         <a href="{% url 'account_signup' %}">Sign Up</a> to review
       </h3>
-      {% endif %}
+      {% endif %} {% endif %}
     </div>
   </div>
 
