@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from django.views.generic import ListView, View, CreateView
 from .models import Movie, Review, WatchlistItem, Genre
 from django.contrib.auth.mixins import LoginRequiredMixin

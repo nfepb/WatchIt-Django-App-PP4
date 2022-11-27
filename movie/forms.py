@@ -31,8 +31,8 @@ class AddMovieForm(forms.ModelForm):
         movie model
         """
         model = Movie
-        fields = ('movie_title', 'director', 'year_released', 'movie_poster',
+        fields = ('movie_title', 'director', 'movie_poster', 'year_released',
                   'synopsis', 'movie_genre')
         widgets = {
-            'year_released': DatePickerInput(options={"format": "MM/DD/YYYY"})
+            'year_released': DatePickerInput(options={"format": "DD/MM/YYYY"})
         }
