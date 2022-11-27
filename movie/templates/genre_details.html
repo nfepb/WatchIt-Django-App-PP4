@@ -22,12 +22,12 @@
                 <a href="{% url 'movie_details' movie.slug %}">
                   <div class="card h-150">
                     <div class="card-header">
-                      <h2 class="mt-2 small-text">
+                      <h2 class="mt-2 small-text fw-bold">
                         {{ movie.movie_title }}
-                        <span>by {{ movie.director }}</span>
+                        <span class="orange-text">by {{ movie.director }}</span>
                       </h2>
                     </div>
-                    <div class="row">
+                    <div class="row justify-content-center">
                       <div class="col-4 d-flex align-items-center p-0">
                         <div class="card-body p-0">
                           {% if "placeholder" in movie.movie_poster.url %}
@@ -46,10 +46,10 @@
                         </div>
                       </div>
                       <!--https://django-star-ratings.readthedocs.io/en/latest/?badge=latest/#-->
-                      <div class="star">
+                      <div class="star pt-2">
                         {% ratings movie 12 12 read_only %}
                       </div>
-                      <div class="col-7 d-flex align-items-center">
+                      <div class="col-12 d-flex align-items-center">
                         <p class="f-small card-text">
                           {{movie.synopsis|truncatewords:20}}
                         </p>

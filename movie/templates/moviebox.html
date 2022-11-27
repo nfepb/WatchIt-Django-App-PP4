@@ -1,0 +1,145 @@
+{% extends "base.html" %} {% load static %} {% load ratings %}
+<!-- prettier-ignore -->
+{% block title %}
+<title>Bookshelf</title>
+{% endblock %} {% block content %}
+
+<section id="moviebox">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10">
+      <h1 class="mt-5 mb-5">Moviebox</h1>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-10">
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-8 mt-4 mb-4">
+            <form method="GET" action="#">
+              {% csrf_token %}
+              <input
+                class="searchfield form-control"
+                name="search"
+                type="text"
+                placeholder="Search"
+              />
+              <button
+                aria-label="Search Button"
+                type="submit"
+                class="btn btn-action"
+                value="Search"
+              >
+                <i class="fa-solid fa-magnifying-glass icon-lg"></i>
+              </button>
+              <a
+                aria-label="X button to close search"
+                class="btn btn-styles"
+                href="{% url 'book_shelf' %}"
+              >
+                <i class="fa-solid fa-x icon-lg"></i>
+              </a>
+            </form>
+          </div>
+          {% if user.is_authenticated %}
+          <div
+            class="col-12 col-sm-6 col-md-4 mt-4 mb-4 d-flex justify-content-center"
+          >
+            <a class="btn btn-action mb-5" href="{% url 'add_movie' %}"
+              >Add a Movie
+            </a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pb-5">
+    <div class="row">
+      <div class="col">
+        <h2 class="text-center pt-5 pb-3">Movie</h2>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Movie Entries -->
+        <div class="col-12">
+          <div class="row mb-2">
+            {% for movie in moviebox %}
+            <div class="col-12 col-md-4 col-lg-3 mb-3 mb-md-5">
+              <a href="{% url 'movie_details' movie.slug %}">
+                <div class="card h-100 movie-card">
+                  <div class="card-header">
+                    <h2 class="mt-2 p-bold">
+                      {{ movie.movie_title }}
+                      <span class="orange-text small-textp-bold"
+                        >by {{ movie.director }}</span
+                      >
+                    </h2>
+                    <!--https://django-star-ratings.readthedocs.io/en/latest/?badge=latest/#-->
+                    <div class="star">{% ratings movie 12 12 read_only %}</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-4 p-0">
+                      <div class="card-body p-0">
+                        {% if "placeholder" in movie.movie_poster.url %}
+                        <img
+                          class="card-img-top image-listing"
+                          src="https://res.cloudinary.com/dknv0nxqz/image/upload/v1669233111/watchit/static/images/placeholder-movie-poster_ybuigt.jpg"
+                          alt="{{ movie.movie_title }} by {{ movie.director }} film with no referenced poster"
+                        />
+                        {% else %}
+                        <img
+                          class="card-img-top image-listing"
+                          src=" {{ movie.movie_poster.url }}"
+                          alt="{{ movie.movie_title }} by {{ movie.director }} film reference"
+                        />
+                        {% endif %}
+                      </div>
+                    </div>
+                    <div class="col-12 d-flex align-items-center">
+                      <p class="f-small card-text">
+                        {{movie.synopsis|truncatewords:20}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            {% if forloop.counter|divisibleby:8 %}
+          </div>
+          <div class="row mb-2">
+            {% endif %} {% empty %}
+            <div class="col-12 col-md-8">
+              <h3>No Books</h3>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% if is_paginated %}
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center mt-4">
+          {% if page_obj.has_previous %}
+          <li class="mx-2">
+            <a href="?page={{ page_obj.previous_page_number }}"
+              >&laquo; PREV
+            </a>
+          </li>
+          {% endif %} {% if page_obj.has_next %}
+          <li class="mx-2">
+            <a href="?page={{ page_obj.next_page_number }}"> NEXT &raquo;</a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% endblock %} {% block script %}
+<script>
+  document.querySelector("form").setAttribute("action", "");
+</script>
+{% endblock %}

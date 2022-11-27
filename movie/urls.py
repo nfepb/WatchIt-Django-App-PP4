@@ -9,4 +9,5 @@ urlpatterns = [
     path(
         'genre/<slug:slug>', views.GenreDetails.as_view(), name='genre_details'
         ),
+    path('moviebox/', views.MovieboxList.as_view(), name='moviebox'),
 ]

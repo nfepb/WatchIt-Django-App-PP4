@@ -132,6 +132,37 @@ class GenreDetails(View):
         )
 
 
+class MovieboxList(ListView):
+    """
+    Takes the movie object from Movie model
+    and returns list of approved = True
+    and in order of when they were created
+    in the Moviebox page
+    """
+    model = Movie
+    queryset = Movie.objects.filter(
+        movie_approved=True).order_by('-movie_created_on')
+    template_name = 'moviebox.html'
+    paginate_by = 8
+    context_object_name = 'moviebox'
+
+    def get_queryset(self):
+        """
+        Gets the user input in the search field
+        in the template and returns a list of movie
+        from the Movie model filtered by title,
+        director and synposis and the movie
+        has approved = True
+        """
+        name = self.request.GET.get('search', '')
+        object_list = Movie.objects.filter(movie_approved=True)
+        if name:
+            object_list = object_list.filter(
+                Q(movie_title__icontains=name) | Q(director__icontains=name) |
+                Q(synopsis__icontains=name))
+        return object_list
+
+
 class AddMovie(LoginRequiredMixin, CreateView):
     """
     View verifying if user is logged in before accessing
