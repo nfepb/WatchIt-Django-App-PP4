@@ -164,6 +164,19 @@ a:hover {
     color: var(--carnelian);
 }
 
+.btn-like {
+    color: var(--carnelian);
+    border: none;
+    background: transparent;
+}
+
+.btn-like:hover,
+.btn-like:active {
+    color: var(--fulvous);
+    background: transparent;
+    border: none;
+}
+
 /* ----- genre_details.html -----*/
 
 .small-text {

@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import AddMovieForm, MovieForm
 from django.utils.text import slugify
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 
 
 class HomepageList(ListView):
@@ -196,3 +197,25 @@ class AddMovie(LoginRequiredMixin, CreateView):
             'Thank you for adding a new movie. It has been flagged for validation!')
         form.slug = slugify(form.movie_title + "-" + form.director)
         return super().form_valid(form)
+
+
+class WatchlistMovie(View):
+    """
+    Users can add or remove the movie object
+    to their watchlist
+    """
+    def post(self, request, slug, *args, **kwargs):
+        """
+        Gets the specific movie from Movie model
+        Checks if the user has added the movie to the watchlist
+        and adds or removes the user which will be called
+        via template movie_details
+        """
+        movie = get_object_or_404(Movie, slug=slug)
+
+        if movie.in_watchlists.filter(id=request.user.id).exists():
+            movie.in_watchlists.remove(request.user)
+        else:
+            movie.in_watchlists.add(request.user)
+
+        return HttpResponseRedirect(reverse('movie_details', args=[slug]))

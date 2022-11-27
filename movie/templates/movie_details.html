@@ -14,7 +14,7 @@
         {% if "placeholder" in movie.movie_poster.url %}
         <img
           class="card-img-top movie-detail-image"
-          src="https://res.cloudinary.com/dknv0nxqz/image/upload/v1669311606/watchit/static/images/placeholder-img_ufi0rq.jpg"
+          src="https://res.cloudinary.com/dknv0nxqz/image/upload/v1669233111/watchit/static/images/placeholder-movie-poster_ybuigt.jpg"
           alt="{{ movie.movie_title }} by {{ movie.director }} film cover with no poster."
         />
         {% else %}
@@ -49,6 +49,71 @@
             <div class="p-0 col-4 col-lg-3 d-flex justify-content-center">
               <a href="#reviews" class="btn btn-action">Review</a>
             </div>
+
+            {% if user.is_authenticated %}
+            <div class="p-0 col-3 mt-2">
+              <div
+                class="d-flex justify-content-center justify-content-md-start"
+              >
+                <form
+                  class="d-inline"
+                  action="{% url 'in_watchlists' movie.slug %}"
+                  method="POST"
+                >
+                  {% csrf_token %} {% if watchlisted %}
+                  <span class="text-secondary"
+                    >{{ movie.count_in_watchlists }}
+                  </span>
+                  <button
+                    type="submit"
+                    name="movie_id"
+                    value="{{movie.slug}}"
+                    class="btn-like"
+                  >
+                    <i class="fa-solid fa-bookmark"></i>
+                  </button>
+                  {% else %}
+                  <span class="text-small"
+                    >{{ movie.count_in_watchlists }}
+                  </span>
+                  <button
+                    type="submit"
+                    name="movie_id"
+                    value="{{ movie.slug }}"
+                    class="btn-like"
+                  >
+                    <i class="fa-regular fa-bookmark"></i>
+                  </button>
+                  {% endif %}
+                </form>
+              </div>
+            </div>
+            {% else %}
+            <div class="p-0 col-md-3 col-12 mt-4 mt-md-2">
+              <div class="row">
+                <div class="col p-0 d-flex justify-content-center">
+                  <span class="text-center p-bold"
+                    >{{ movie.count_in_watchlists }}
+                    <i class="fa-regular fa-bookmark"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col p-0 d-flex justify-content-center p-0">
+                  <span class="p-bold text-center f-small"
+                    ><a class="f-small" href="{% url 'account_login' %}"
+                      >Log In</a
+                    >
+                    or
+                    <a class="f-small" href="{% url 'account_signup' %}"
+                      >Sign Up</a
+                    >
+                    to Bookmark</span
+                  >
+                </div>
+              </div>
+            </div>
+            {% endif %}
           </div>
         </div>
       </div>
