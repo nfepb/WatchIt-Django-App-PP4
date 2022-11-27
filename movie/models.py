@@ -32,13 +32,13 @@ class Movie(models.Model):
         """
         # TO BE MODIFIED BY "-average_rating"
         ordering = ['-movie_created_on']
+        constraints = [
+            models.UniqueConstraint(fields=['movie_title', 'director'],
+                                    name='unique_movie_listing')
+        ]
 
-# Return String representation in Django doc:
     def __str__(self):
-        return f"{self.movie_title}: {self.average_rating()}"
-
-    def average_rating(self) -> float:
-        return Rating.objects.filter(movie=self).aggregate(Avg("rating"))["rating__avg"] or 0
+        return self.movie_title
 
     def count_in_watchlists(self):
         """
