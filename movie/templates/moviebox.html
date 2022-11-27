@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% load static %} {% load ratings %}
 <!-- prettier-ignore -->
 {% block title %}
-<title>Bookshelf</title>
+<title>Moviebox</title>
 {% endblock %} {% block content %}
 
 <section id="moviebox">
@@ -34,7 +34,7 @@
               <a
                 aria-label="X button to close search"
                 class="btn btn-styles"
-                href="{% url 'book_shelf' %}"
+                href="{% url 'moviebox' %}"
               >
                 <i class="fa-solid fa-x icon-lg"></i>
               </a>
@@ -57,7 +57,7 @@
   <div class="pb-5">
     <div class="row">
       <div class="col">
-        <h2 class="text-center pt-5 pb-3">Movie</h2>
+        <h2 class="text-center pt-5 pb-3">Last Added Movies</h2>
       </div>
     </div>
     <div class="container-fluid">
