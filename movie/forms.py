@@ -1,5 +1,6 @@
 from .models import Review, Movie
 from django import forms
+from bootstrap_datepicker_plus.widgets import DatePickerInput
 
 
 class MovieForm(forms.ModelForm):
@@ -30,5 +31,8 @@ class AddMovieForm(forms.ModelForm):
         movie model
         """
         model = Movie
-        fields = ('movie_title', 'director', 'movie_poster',
+        fields = ('movie_title', 'director', 'year_released', 'movie_poster',
                   'synopsis', 'movie_genre')
+        widgets = {
+            'year_released': DatePickerInput(options={"format": "MM/DD/YYYY"})
+        }

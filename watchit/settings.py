@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'star_ratings',
     'crispy_forms',
     'crispy_bootstrap5',
+    'bootstrap_datepicker_plus',
     'movie',
 ]
 

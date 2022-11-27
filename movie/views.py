@@ -3,6 +3,8 @@ from django.views.generic import ListView, View, CreateView
 from .models import Movie, Review, WatchlistItem, Genre
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import AddMovieForm, MovieForm
+from django.utils.text import slugify
+from django.contrib import messages
 
 
 class HomepageList(ListView):
