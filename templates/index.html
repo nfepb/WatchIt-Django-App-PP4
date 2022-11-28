@@ -24,7 +24,9 @@
         <h3 class="third-title">Discover new horizons in the 7th Art</h3>
         {% if user.is_authenticated %}
         <h3 class="pb-3">Welcome <span class="red-text">{{ user }}</span></h3>
-        <a class="btn btn-hero btn-action" href="#">My watchlist</a>
+        <a class="btn btn-hero btn-action" href="{% url 'my_watchlist' %}"
+          >My watchlist</a
+        >
         {% else %}
         <div class="d-flex justify-content-around pt-3 pb-3">
           <a class="btn btn-hero btn-danger" href="{% url 'account_login' %}"

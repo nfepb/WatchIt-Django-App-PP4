@@ -164,9 +164,9 @@
     <!-- Messages to be displayed -->
     {% if messages %} {% for message in messages %}
     <div class="row justify-content-center">
-      <div class="col col-md-8">
+      <div class="justify-content-center d-flex col col-md-8">
         <div
-          class="alert mt-3 alert{{ message.tag }} text-center alert-dismissible fade show"
+          class="alert mt-3 alert-{{message.level_tag}} text-center alert-dismissible fade show"
         >
           {{ message }}
           <button
