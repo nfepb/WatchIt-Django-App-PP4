@@ -63,6 +63,9 @@ class MovieDetails(View):
         queryset = Movie.objects.filter(movie_approved=True)
         movie = get_object_or_404(queryset, slug=slug)
         reviews = movie.reviews.order_by('-review_created_on')
+        in_watchlists = False
+        if movie.in_watchlists.filter(id=self.request.user.id).exists():
+            in_watchlists = True
 
         return render(
             request,
@@ -71,6 +74,7 @@ class MovieDetails(View):
                 'movie': movie,
                 'reviews': reviews,
                 'reviewed': False,
+                'in_watchlists': in_watchlists,
                 'review_form': MovieForm()
             },
         )
@@ -83,6 +87,9 @@ class MovieDetails(View):
         queryset = Movie.objects.filter(movie_approved=True)
         movie = get_object_or_404(queryset, slug=slug)
         reviews = movie.reviews.order_by('-review_created_on')
+        in_watchlists = False
+        if movie.in_watchlists.filter(id=self.request.user.id).exists():
+            in_watchlists = True
 
         review_form = MovieForm(data=request.POST)
         if review_form.is_valid():
@@ -102,6 +109,7 @@ class MovieDetails(View):
                 'movie': movie,
                 'reviews': reviews,
                 'reviewed': True,
+                'in_watchlists': in_watchlists,
                 'review_form': review_form
             },
         )

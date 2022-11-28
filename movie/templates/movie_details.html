@@ -60,9 +60,9 @@
                   action="{% url 'in_watchlists' movie.slug %}"
                   method="POST"
                 >
-                  {% csrf_token %} {% if watchlisted %}
-                  <span class="text-secondary"
-                    >{{ movie.count_in_watchlists }}
+                  {% csrf_token %} {% if in_watchlists %}
+                  <span class="text-orange"
+                    >Added {{ movie.count_in_watchlists }}
                   </span>
                   <button
                     type="submit"
