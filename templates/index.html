@@ -19,11 +19,13 @@
       >
         <h1 class="main-title pt-5 pb-3">WatchIt!</h1>
         <h2 class="secundary-title">
-          Review your favorite movies and find your next one to watch!
+          Review your favourite movies and find your next movie to watch!
         </h2>
         <h3 class="third-title">Discover new horizons in the 7th Art</h3>
         {% if user.is_authenticated %}
-        <h3 class="pb-3">Welcome <span class="red-text">{{ user }}</span></h3>
+        <h3 class="pb-3">
+          Welcome <span class="red-text third-title p-0">{{ user }}</span>
+        </h3>
         <a class="btn btn-hero btn-action" href="{% url 'my_watchlist' %}"
           >My watchlist</a
         >
@@ -46,7 +48,7 @@
 
 <!-- Movie carousel section  -->
 <section id="carousel-section">
-  <h2 class="text-center">Newly added movies</h2>
+  <h2 class="text-center pb-3">Newly added movies</h2>
   <!-- Owl Carousel https://owlcarousel2.github.io/OwlCarousel2/ -->
   <div class="owl-carousel owl-theme">
     {% for movie in movie_list %}
@@ -54,16 +56,24 @@
       <div class="card h-100 border-0">
         <div class="card-body movie-listing-body">
           <a href="{% url 'movie_details' movie.slug %}">
+            {% if "placeholder" in movie.movie_poster.url %}
+            <img
+              class="card-img-top owl-movie-listing"
+              src="https://res.cloudinary.com/dknv0nxqz/image/upload/v1669674219/watchit/static/images/placeholder-movie-poster-removebg-preview_vjnkie.png"
+              alt="{{ movie.movie_title }} by {{ movie.director }} film with no referenced poster"
+            />
+            <h3 class="carousel-caption mt-2 p-bold">
+              {{ movie.movie_title }}
+            </h3>
+            {% else %}
             <img
               class="card-img-top owl-movie-listing"
               src=" {{ movie.movie_poster.url }}"
-              alt="{{ movie.title }} by {{ movie.director }} movie card"
+              alt="{{ movie.movie_title }} by {{ movie.director }} film reference"
             />
+            {% endif %}
           </a>
         </div>
-        <h4 class="m-0 f-medium p-bold card-title text-center">
-          {{ movie.movie_title }}
-        </h4>
       </div>
     </div>
     {% endfor %}
@@ -71,7 +81,7 @@
 </section>
 <!-- Genre Section -->
 <section id="genres-section">
-  <h3 class="text-center">Discover by genre</h3>
+  <h3 class="text-center pb-3">Discover by genre</h3>
   <!--Owl Carousel https://owlcarousel2.github.io/OwlCarousel2/-->
   <div class="owl-carousel owl-theme">
     {% for genre in genre_list %}
@@ -118,6 +128,9 @@
       },
       1000: {
         items: 6,
+      },
+      1200: {
+        items: 8,
       },
     },
   });

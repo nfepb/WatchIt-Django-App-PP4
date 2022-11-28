@@ -68,96 +68,91 @@
     <!-- Navigation bar -->
     <header>
       <nav class="navbar sticky-top navbar-expand-lg navbar-dark red-bg">
-        <a class="navbar-brand" href="{% url 'home' %}"
-          ><span>Watch</span><span>It!</span></a
-        >
-        <!-- Search functionality in Navbar -->
-        <div class="align-items-center justify-content-center mb-3">
-          <div class="text-center">
-            <form class="d-inline-flex col-10" role="search">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button class="btn btn-outline-success" type="submit">
-                <i class="fa-solid fa-magnifying-glass"></i>
-              </button>
-            </form>
-          </div>
-
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+        <div class="container">
+          <a class="navbar-brand" href="{% url 'home' %}"
+            ><span class="brand-title">Watch</span
+            ><span class="brand-title text-dark">It!</span></a
           >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="flex">
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    aria-current="page"
-                    href="{% url 'home' %}"
-                    ><i class="fa-solid menu-icon fa-film"></i>What's New</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'moviebox' %}"
-                    ><i class="fa-solid fa-fire"></i>Moviebox</a
-                  >
-                </li>
-                <!-- Navbar links to display based on user type (auth or not) -->
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'my_watchlist' %}"
-                    ><i class="fa-regular fa-bookmark"></i>My Watchlist</a
-                  >
-                </li>
-                {% if user.is_superuser %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'admin_only' %}"
-                    ><i class="fa-solid fa-gears"></i>Admin Only</a
-                  >
-                </li>
-                {% endif %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'account_logout' %}"
-                    ><i class="fa-solid fa-right-from-bracket"></i>Logout</a
-                  >
-                </li>
-                {% else %}
-                <li class="nav-item dropdown">
-                  <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                    ><i class="fa-solid fa-user"></i>Login/Register
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a class="dropdown-item" href="{% url 'account_login' %}"
-                        >Login</a
-                      >
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="{% url 'account_signup' %}"
-                        >Register</a
-                      >
-                    </li>
-                  </ul>
-                </li>
-                {% endif %}
-              </ul>
+          <!-- Navbar Items collapsable -->
+          <div
+            class="align-items-center justify-content-center justify-content-md-start mb-3"
+          >
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="flex">
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      aria-current="page"
+                      href="{% url 'home' %}"
+                      ><i class="fa-solid menu-icon fa-film"></i> What's New</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'moviebox' %}"
+                      ><i class="fa-solid fa-fire"></i> Moviebox</a
+                    >
+                  </li>
+                  <!-- Navbar links to display based on user type (auth or not) -->
+                  {% if user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'my_watchlist' %}"
+                      ><i class="fa-regular fa-bookmark"></i> My Watchlist</a
+                    >
+                  </li>
+                  {% if user.is_superuser %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'admin_only' %}"
+                      ><i class="fa-solid fa-gears"></i> Admin Only</a
+                    >
+                  </li>
+                  {% endif %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'account_logout' %}"
+                      ><i class="fa-solid fa-right-from-bracket"></i> Logout</a
+                    >
+                  </li>
+                  {% else %}
+                  <li class="nav-item dropdown">
+                    <a
+                      class="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      ><i class="fa-solid fa-user"></i> Login/Register
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          href="{% url 'account_login' %}"
+                          >Login</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          href="{% url 'account_signup' %}"
+                          >Register</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  {% endif %}
+                </ul>
+              </div>
             </div>
           </div>
         </div>

@@ -4,6 +4,14 @@ html {
     height: 100%;
 }
 
+* {
+    color: var(--alabaster);
+    font-size: 15px;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
@@ -11,7 +19,11 @@ body {
     display: flex;
     flex-direction: column;
     background-color: var(--black);
-    color: #ede7d9;
+    color: var(--alabaster);
+}
+
+section {
+    padding: 20px 0;
 }
 
 .container-fluid {
@@ -55,6 +67,11 @@ a:hover {
 
 .navbar {
     justify-content: center;
+    color: var(--alabaster);
+}
+
+.brand-title {
+    font-size: 3.2rem;
 }
 
 .dropdown-menu {
@@ -63,11 +80,25 @@ a:hover {
 }
 
 .nav-link:hover {
-    color: var(--alabaster);
+    color: var(--black);
 }
 
 .nav-item {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    padding: 0 12px;
+    transition: all 0.2s ease-in-out;
+}
+
+.nav-item:hover {
+    transform: scale(1.1);
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
 }
 
 .f-small {
@@ -112,17 +143,13 @@ a:hover {
     width: 150px;
 }
 
-.red-text {
-    color: var(--carnelian) !important;
-}
-
 /* Carousel section */
 #carousel-section {
     padding: 5.6rem 0;
 }
 
 .owl-movie-listing {
-    height: 30vh;
+    max-height: 30vh;
 }
 
 .movie-image {
@@ -236,6 +263,14 @@ a:hover {
 }
 
 
+/* ----- Moviebox -----*/
+
+.searchfield {
+    display: inline;
+    max-width: 60%;
+}
+
+
 /* ----- Admin_only.html -----*/
 
 .admin-img-approval {
@@ -272,5 +307,17 @@ a:hover {
 
     .image-listing {
         height: 13vw;
+    }
+
+    /* moviebox */
+
+    .searchfield {
+        max-width: 80%;
+    }
+
+    /* mindex.html */
+
+    #hero-section {
+        padding: 100px;
     }
 }

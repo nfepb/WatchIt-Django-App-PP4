@@ -12,7 +12,7 @@
   </div>
   <div class="container-fluid">
     <div class="row justify-content-center">
-      <div class="col-12 col-sm-10">
+      <div class="col-12">
         <div class="d-flex row">
           <div class="col-12 col-sm-6 col-md-8 mt-4 mb-4">
             <form method="GET" action="#">
@@ -26,14 +26,14 @@
               <button
                 aria-label="Search Button"
                 type="submit"
-                class="btn btn-action"
+                class="btn btn-action m-1"
                 value="Search"
               >
                 <i class="fa-solid fa-magnifying-glass icon-lg"></i>
               </button>
               <a
                 aria-label="X button to close search"
-                class="btn btn-styles"
+                class="btn btn-action m-1"
                 href="{% url 'moviebox' %}"
               >
                 <i class="fa-solid fa-x icon-lg"></i>
@@ -85,7 +85,7 @@
                         {% if "placeholder" in movie.movie_poster.url %}
                         <img
                           class="card-img-top image-listing"
-                          src="https://res.cloudinary.com/dknv0nxqz/image/upload/v1669233111/watchit/static/images/placeholder-movie-poster_ybuigt.jpg"
+                          src="https://res.cloudinary.com/dknv0nxqz/image/upload/v1669674219/watchit/static/images/placeholder-movie-poster-removebg-preview_vjnkie.png"
                           alt="{{ movie.movie_title }} by {{ movie.director }} film with no referenced poster"
                         />
                         {% else %}
@@ -124,13 +124,16 @@
           <li class="page-item mx-2">
             <a
               href="?page={{ page_obj.previous_page_number }}"
-              class="page-link"
+              class="btn btn-action"
               >&laquo; PREV
             </a>
           </li>
           {% endif %} {% if page_obj.has_next %}
           <li class="page-item mx-2">
-            <a href="?page={{ page_obj.next_page_number }}" class="page-link">
+            <a
+              href="?page={{ page_obj.next_page_number }}"
+              class="btn btn-action"
+            >
               NEXT &raquo;</a
             >
           </li>
