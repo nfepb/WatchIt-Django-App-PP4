@@ -236,6 +236,13 @@ a:hover {
 }
 
 
+/* ----- Admin_only.html -----*/
+
+.admin-img-approval {
+    max-width: 50%;
+}
+
+
 /* ----- Media -----*/
 
 @media screen and (min-width: 300px) {

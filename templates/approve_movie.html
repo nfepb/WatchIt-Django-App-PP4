@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% load static %} {% block title %}
+<title>Approve Movie</title>
+{% endblock %}{% block content %} {% load crispy_forms_tags %}
+
+<section class="pt-5 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 mt-5 mb-3b">
+      <h1 class="page-title">Update Movie Listing</h1>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col col-md-8">
+      <div>
+        <form method="post" style="margin-top: 1.3em">
+          {% csrf_token %} {{ form | crispy }}
+          <button type="submit" class="btn btn-action">
+            Approve Movie Listing
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

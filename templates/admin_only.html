@@ -1,0 +1,89 @@
+{% extends "base.html" %} {% load static %}{% block title %}
+<title>Admin Only</title>
+{% endblock %} {% block content %}
+
+<!--Books for Approval-->
+<section class="pt-5 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10">
+      <h2 class="page-subtitle text-center">Movies for Approval</h2>
+    </div>
+  </div>
+  <div class="row mx-2 justify-content-center">
+    {% for movie in for_approval %}
+    <div class="card mt-4 col-12 col-md-8">
+      <div class="card-body">
+        <div class="row py-2">
+          <div class="col-12 col-md-6">
+            <h2 class="p-bold">{{ movie.movie_title }}</h2>
+            <h2 class="p-bold orange-text">by {{ movie.director }}</h2>
+            <p>{{ movie.movie_created_on }}</p>
+            <p>{{ movie.movie_genre}}</p>
+          </div>
+          <div class="col-12 col-md-6 d-flex justify-content-center">
+            {% if "placeholder" in movie.movie_poster.url %}
+            <img
+              class="admin-img-approval"
+              src="https://res.cloudinary.com/dknv0nxqz/image/upload/v1669311606/watchit/static/images/placeholder-img_ufi0rq.jpg"
+              alt="{{ movie.movie_title }} by {{ movie.director }} movie listing with no poster image"
+            />
+            {% else %}
+            <img
+              class="admin-img-approval"
+              src=" {{ movie.movie_poster.url }}"
+              alt="{{ movie.movie_title }} by {{ movie.director }} movie listing"
+            />
+            {% endif %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="review-body col-12">
+            <p class="p-bold">Synopsis:</p>
+            {{ movie.synopsis | linebreaks}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col d-flex">
+            <form
+              action=" {% url 'edit_movie_listing' movie.pk %}"
+              method="get"
+            >
+              {% csrf_token %}
+              <button class="btn btn-action me-4">Approve</button>
+            </form>
+
+            <form
+              action="{% url 'delete_movie_admin' movie.pk %}"
+              method="post"
+            >
+              {% csrf_token %}
+              <button class="btn btn-action">Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12 col-md-8">
+      <h3>No movies submitted for approval</h3>
+    </div>
+    {% endfor %}
+  </div>
+  {% if is_paginated %}
+  <nav aria-label="Page navigation">
+    <ul class="pagination mt-4 justify-content-center">
+      {% if page_obj.has_previous %}
+      <li class="mx-2">
+        <a href="?page={{ page_obj.previous_page_number }}">&laquo; PREV </a>
+      </li>
+      {% endif %} {% if page_obj.has_next %}
+      <li class="mx-2">
+        <a href="?page={{ page_obj.next_page_number }}"> NEXT &raquo;</a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+  {% endif %}
+</section>
+
+{% endblock %}

@@ -2,13 +2,14 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.views.generic import (
     ListView, View, CreateView, UpdateView, DeleteView)
 from .models import Movie, Review, WatchlistItem, Genre
-from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import AddMovieForm, MovieForm
 from django.utils.text import slugify
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
+from django.db.models import Q
 
 
 class HomepageList(ListView):
@@ -311,3 +312,88 @@ class DeleteReview(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
         context['date'] = self.object.review_created_on
 
         return context
+
+
+class AdminOnly(UserPassesTestMixin, ListView):
+    """
+    Checks that the user = superuser
+    Gets list of movies from Movie model with
+    movie_approved = False
+    Gets a list of reviews from Review
+    template is admin_only.html
+    """
+
+    def test_func(self):
+        """
+        Checks if the current user is
+        a superuser and allows access to
+        the template if they are
+        """
+        return self.request.user.is_superuser
+
+    template_name = 'admin_only.html'
+    model = Movie
+    queryset = Movie.objects.filter(
+        movie_approved=False).order_by('-movie_created_on')
+    context_object_name = 'for_approval'
+    paginate_by = 4
+
+    def get_context_data(self, **kwargs):
+        """
+        Gets the review from the Review model
+        """
+        context = super().get_context_data(**kwargs)
+        context['reviews'] = Review.objects.order_by(
+            '-review_created_on'
+            )
+        return context
+
+
+class EditMovieListing(UserPassesTestMixin, SuccessMessageMixin, UpdateView):
+    """
+    Checks the user = superuser
+    Gets the movie object from
+    Movie model and allows superuser
+    to update the movie object
+    template is approve_movie.html
+    """
+
+    model = Movie
+    fields = [
+        'movie_title',
+        'director',
+        'synopsis',
+        'year_released',
+        'movie_genre',
+    ]
+    template_name = 'approve_movie.html'
+    success_url = reverse_lazy('admin_only')
+    success_message = "You approved the movie"
+
+    def test_func(self):
+        """
+        Checks if the current user = superuser 
+        and allows access to template if yes
+        """
+        return self.request.user.is_superuser
+
+    def form_valid(self, form):
+        """
+        Validate form
+        Set the movie_approved status to True
+        Save and return the new object
+        """
+        form.instance.movie_approved = True
+        form.save()
+        return super().form_valid(form)
+
+
+class DeleteMovie(SuccessMessageMixin, DeleteView):
+    """
+    Gets the movie object instance from
+    Movie model and allows the superuser
+    to delete the movie object
+    """
+    model = Movie
+    success_url = reverse_lazy('admin_only')
+    success_message = "Movie successfully deleted!"
