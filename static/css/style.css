@@ -166,18 +166,15 @@ a:hover {
 }
 
 .genre-card {
-    margin: 0 2px;
-    --bs-card-inner-border-radius: 0;
-    border-radius: 0;
-    border: none;
+    margin: 0 5px;
 }
 
 .genre-card-title {
-    height: 5.6rem;
+    height: 50px;
 }
 
 .genre-card-img {
-    height: 20vw;
+    height: 40vw;
     object-fit: cover;
 }
 

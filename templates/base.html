@@ -224,7 +224,8 @@
       </div>
     </footer>
 
-    <!-- Script to dismiss messages after TimeOut -->
+    <!-- If messages, script to dismiss messages after TimeOut -->
+    {% if messages %}
     <script>
       setTimeout(function () {
         let messages = document.getElementById("msg");
@@ -232,6 +233,7 @@
         alert.close();
       }, 5000);
     </script>
+    {% endif %}
 
     <!-- Import Bootstrap & Popper JavaScript -->
     <script
