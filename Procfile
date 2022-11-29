@@ -1,1 +1,1 @@
-web: gunicorn booknook.wsgi
+web: gunicorn watchit.wsgi
