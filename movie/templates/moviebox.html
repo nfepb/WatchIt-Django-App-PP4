@@ -12,9 +12,9 @@
   </div>
   <div class="container-fluid">
     <div class="row justify-content-center">
-      <div class="col-12">
+      <div class="col-12 col-sm-10">
         <div class="d-flex row">
-          <div class="col-12 col-sm-6 col-md-8 mt-4 mb-4">
+          <div class="col-12 col-sm-6 col-md-8 mt-3 mb-3">
             <form method="GET" action="#">
               {% csrf_token %}
               <input
@@ -44,7 +44,7 @@
           <div
             class="col-12 col-sm-6 col-md-4 mt-4 mb-4 d-flex justify-content-center"
           >
-            <a class="btn btn-action mb-5" href="{% url 'add_movie' %}"
+            <a class="btn btn-action mb-3" href="{% url 'add_movie' %}"
               >Add a Movie
             </a>
           </div>
@@ -70,12 +70,12 @@
               <a href="{% url 'movie_details' movie.slug %}">
                 <div class="card h-100 movie-card">
                   <div class="card-header">
-                    <h2 class="mt-2 p-bold">
+                    <h4 class="card-title small-text mt-2 p-bold">
                       {{ movie.movie_title }}
-                      <span class="orange-text small-textp-bold"
+                      <span class="orange-text small-text p-bold"
                         >by {{ movie.director }}</span
                       >
-                    </h2>
+                    </h4>
                     <!--https://django-star-ratings.readthedocs.io/en/latest/?badge=latest/#-->
                     <div class="star">{% ratings movie 12 12 read_only %}</div>
                   </div>
@@ -97,8 +97,8 @@
                         {% endif %}
                       </div>
                     </div>
-                    <div class="col-12 d-flex align-items-center">
-                      <p class="f-small card-text">
+                    <div class="col-7 row align-items-center">
+                      <p class="small-text fw-light card-text">
                         {{movie.synopsis|truncatewords:20}}
                       </p>
                     </div>

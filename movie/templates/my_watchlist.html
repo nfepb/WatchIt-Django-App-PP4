@@ -10,7 +10,7 @@
   </div>
   <div class="row justify-content-center">
     <div class="col-12 col-sm-10">
-      <h2 class="mb-5">{{ user }}'s saved movies</h2>
+      <h2 class="mb-5 orange-text">{{ user }}'s saved movies</h2>
     </div>
   </div>
 </section>
@@ -58,7 +58,7 @@
                 </div>
               </div>
               <div class="col-7 d-flex align-items-center">
-                <p class="f-small card-text">
+                <p class="small-text fw-light card-text">
                   {{movie.synopsis | truncatewords:20}}
                 </p>
               </div>
@@ -100,18 +100,13 @@
             >
           </div>
           <div class="col-12 col-md-6">
-            {% if review.review_approved is False %}
-            <div class="approval-tag">
-              <p class="text-center">Waiting on approval</p>
-            </div>
-            {% endif %}
             <p>{{ review.review_created_on }}</p>
           </div>
         </div>
         <div class="row">
           <div class="col">
-            <p class="p-bold">review:</p>
-            <p>{{ review.content | linebreaks}}</p>
+            <p class="p-bold">Review:</p>
+            <p class="text-small fw-light">{{ review.content | linebreaks}}</p>
           </div>
         </div>
         <div class="row">

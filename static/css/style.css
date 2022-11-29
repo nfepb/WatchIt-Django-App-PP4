@@ -19,11 +19,10 @@ body {
     display: flex;
     flex-direction: column;
     background-color: var(--black);
-    color: var(--alabaster);
 }
 
 section {
-    padding: 20px 0;
+    padding: 20px;
 }
 
 .container-fluid {
@@ -278,6 +277,10 @@ a:hover {
 /* ----- Media -----*/
 
 @media screen and (min-width: 300px) {
+    .hero-image {
+        width: 200px;
+    }
+
     .owl-movie-listing {
         width: 100%;
         height: 36vw;
@@ -292,6 +295,10 @@ a:hover {
 }
 
 @media screen and (min-width: 700px) {
+    .hero-image {
+        width: 300px;
+    }
+
     .image-listing {
         height: 18vw;
     }
