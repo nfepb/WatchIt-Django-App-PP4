@@ -6,7 +6,7 @@
 <title>Sign Up</title>
 {% endblock %} {% block content %}
 
-<section class="d-flex align-items-center justify-content-center py-3">
+<section class="d-flex align-items-center justify-content-center pb-3">
   <div class="signup-container">
     <div class="row">
       <div
@@ -14,8 +14,8 @@
       >
         <img
           class="hero-image"
-          src="https://res.cloudinary.com/dknv0nxqz/image/upload/v1669404596/watchit/static/images/man-image-mime-with-movie-board_pkejfa.jpg"
-          alt="man with movie board"
+          src="https://res.cloudinary.com/dknv0nxqz/image/upload/v1668944494/watchit/static/images/hero-image-watchit_euj5ql.png"
+          alt="board with letters spelling cinema? and with some popcorn"
           height="400"
           width="auto"
         />
@@ -24,11 +24,13 @@
         class="col-12 d-flex flex-column justify-content-center align-items-center"
       >
         <h1>{% trans "Sign Up" %}</h1>
-        <h2 class="text-center">Discover your next movie...</h2>
+        <h2 class="text-center">And discover your next movie...</h2>
 
         <p class="text-center">
           {% blocktrans %}Already have an account? Then please
-          <a href="{{ login_url }}">log in</a>.{% endblocktrans %}
+          <a href="{{ login_url }}" class="orange-text">log in</a>.
+          <!-- prettier-ignore -->
+          {% endblocktrans %}
         </p>
 
         <form
@@ -47,7 +49,7 @@
           <div
             class="flex-column d-flex justify-content-center align-items-center"
           >
-            <button class="btn btn-styles btn-dark" type="submit">
+            <button class="btn btn-styles btn-action" type="submit">
               {% trans "Sign Up" %}
             </button>
           </div>

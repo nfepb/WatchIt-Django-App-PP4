@@ -25,6 +25,10 @@ section {
     padding: 20px;
 }
 
+input {
+    color: var(--blackCoral) !important;
+}
+
 .container-fluid {
     padding: 0;
 }
