@@ -158,10 +158,15 @@
         </form>
       </div>
       {% else %}
-      <h3 class="text-center">
-        Please <a href="{% url 'account_login' %}">Log In</a> or
-        <a href="{% url 'account_signup' %}">Sign Up</a> to review
-      </h3>
+      <h4 class="text-center fw-light">
+        Please
+        <a href="{% url 'account_login' %}" class="text-medium fs-4">Log In</a>
+        or
+        <a href="{% url 'account_signup' %}" class="text-medium fs-4"
+          >Sign Up</a
+        >
+        to review
+      </h4>
       {% endif %} {% endif %}
     </div>
   </div>

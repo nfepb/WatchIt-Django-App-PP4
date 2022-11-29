@@ -49,7 +49,9 @@
                       <div class="star pt-2">
                         {% ratings movie 12 12 read_only %}
                       </div>
-                      <div class="col-12 d-flex align-items-center">
+                      <div
+                        class="col-12 d-flex small-text fw-light align-items-center"
+                      >
                         <p class="f-small card-text">
                           {{movie.synopsis|truncatewords:20}}
                         </p>
