@@ -2,7 +2,7 @@
 
 ![WatchIt Website Responsive Mockup](docs/images/watchit-website-mockup.png)
 
-## **Introduction**
+# **Introduction**
 
 Welcome to WatchIt!,
 
@@ -17,7 +17,7 @@ WhatchIt! is a fictional brand. This project is for educational purposes only.
 You can find the live site here - <a href="https://watchit-project-portfolio-4.herokuapp.com/" target="_blank"> WatchIt! </a>
 ---
 
-## **User Experience Design - UXD** 
+# **User Experience Design - UXD** 
 
 A large part of the inspiration behind the planning for this project came from Jason James Garretts’s, “The Elements of User-Experience”.
 
@@ -35,9 +35,9 @@ The planning of the project is broken into 5 planes,
 [Back to top](<#watchit---project-portfolio-4>)
 ---
 
-## **The Strategy Pane**
+# **The Strategy Pane**
 
-### **App Creator's Goals**
+## **App Creator's Goals**
 
 * To provide the users a website where they can view movie listings, see how other rate the movie, and read other user's review of the movie.
 * To allow users to create, update and delete reviews.
@@ -45,17 +45,17 @@ The planning of the project is broken into 5 planes,
 * To allow the admin user to approve, update and delete movie listings from the frontend.
 * To provide users with clear and adequate responses based on their input or actions.
 
-### User Stories
+## User Stories
 
 To help in defining the most important benefits of the app and the features required to deliver this value, I created a flowchat that goes through the different stages of the app user. It starts with the visitor (as the user), and evolves into a connected user, which is also identified as a regular user. 
 
 [User Flowchart](./planning-docs/user-stories/images/user-flowchart.png)
 
-#### **Admin User Stories**
+### **Admin User Stories**
 
-#### **Site User Stories**
+### **Site User Stories**
 
-#### **Logged-In User Stories**
+### **Logged-In User Stories**
 
 My user stories were obtained by doing research into other apps/websites and analyzing how the user was accompanied through their journey. The [IMDb](https://www.imdb.com/) and [AlloCiné](https://www.allocine.fr/) helped me define what were some of the critical features to get to a MVP, and which features were considered 'nice to have' for later development. 
 
@@ -63,9 +63,9 @@ My user stories were obtained by doing research into other apps/websites and ana
 [Back to top](<#watchit---project-portfolio-4>)
 ---
 
-## **The Scope Plane**
+# **The Scope Plane**
 
-### **Agile methodology**
+## **Agile methodology**
 
 The principles of the Agile Methodology framed how this project was tackled. The project was initially started on another repository of GitHub - <a href="https://github.com/nfepb/WatchIt-Django-App-PP4">PP4-Django-Full-Stack</a>. However, due to server issues, I was advised by my mentor to start over for risk of not submitting the project in time. For more flexibility, the Kanban board was implemented through [Quip](https://salesforce.quip.com/). For centralisation of the assets, the Kanban Board was later re-created in this repository. <a href="https://github.com/users/nfepb/projects/4/views/1">WatchIt Kanban Board</a>
 
@@ -80,7 +80,7 @@ Github issues were used to create the User Stories and to keep track of bugs ide
 
 Milestones were added to keep track of the different Iterations. There were 3 separate Iterations. User Stories were completed based on the Iteration that was in progress. Not every User Story in each Iteration was delivered in time. Too many ideas, not enought time. Too much ambition for the defined deadline. This is the reason why I opted for a phased approach to help digest and define what I would work on in an initial deployment, and what would come in the later stage. After each Sprint in each Iteration, the User Stories that I could not deliver on were re-evaluated to define if they were "must-haves" in the following Iteration. 
 
-### **User Stories**
+## **User Stories**
 
 **Phase 1**
 - As a user, I can easily understand the purpose of this website on the homepage, so that I can easily understand the value proposition.
@@ -115,13 +115,13 @@ Milestones were added to keep track of the different Iterations. There were 3 se
 [Back to top](<#watchit---project-portfolio-4>)
 ---
 
-## **The Structure Plane**
+# **The Structure Plane**
 
 5 pages are visible from the navigation bar. The genre_details page is accessible from the home page or from the book_detail page. The submit a movie form-page is only accessible when submitting a movie to the database.
 
 The Homepage, Moviebox, Login, Signup and Contact pages can be accessed by all users. Once a user logs in or signs in they have access to the My Watchlist page. The Sign up & Login pages are removed from the navigation after the user logs in. Also, the log in page is changed to a log out page.
 
-### **Color Palette**
+## **Color Palette**
 
 ![Color pallete used throughout the project](docs/images/watchit-color-palette.png)
 
@@ -131,19 +131,19 @@ The color #ede7d9 is used in contrast to the 2 previous colour to help text stan
 
 The color #d98324 was used mainly for links and spans in order to make information stand out versus the lighter text color on the different pages.
 
-### **Fonts**
+## **Fonts**
 
 'Poppins' is the only font family that is used throughout the website. It is a 'smooth' writing style with several font-weights, which offers a lot of diversity in the use, without having to pick another font-family for the different use through the website. It bring unity to the user experience on the different pages.
 
-### **Images**
+## **Images**
 
-### **Database Design**
+## **Database Design**
 
 SQLite was used throughout the development of the WatchIt! app. During deployment to a production environment, Heroku PostgreSQL was used.
 
 In order to support the functionalities defined in the user stories for each Epic, mapping the architecture became crucial. This helped foresee how we could get to an MVP.
 
-#### **Key Models**
+### **Key Models**
 
 [Database Diagram](docs/schema/watchit-database-diagram.png)
 
@@ -172,7 +172,7 @@ In order to support the functionalities defined in the user stories for each Epi
 [Back to top](<#watchit---project-portfolio-4>)
 ---
 
-## **The Skeleton Plane**
+# **The Skeleton Plane**
 
 <details><summary>Low fidelity mobile wireframes</summary>
 
@@ -220,11 +220,11 @@ In order to support the functionalities defined in the user stories for each Epi
 [Back to top](<#watchit---project-portfolio-4>)
 ---
 
-## **The Surface Plane**
+# **The Surface Plane**
 
-### **Features**
+## **Features**
 
-#### **Home Page**
+### **Home Page**
 
 <details><summary>*Navigation Bar*</summary>
 
@@ -284,7 +284,7 @@ In order to support the functionalities defined in the user stories for each Epi
 * To avoid losing visitors and users, links are opened in a new tab.
 </details>
 
-#### **Login Page**
+### **Login Page**
 
 <details><summary>*Login Page*</summary>
 
@@ -296,7 +296,7 @@ In order to support the functionalities defined in the user stories for each Epi
 * For guest users without an account, there is a link that will re-direct them to the signup page.
 </details>
 
-#### **Signup Page**
+### **Signup Page**
 
 <details><summary>*Signup Page*</summary>
 
@@ -309,7 +309,7 @@ In order to support the functionalities defined in the user stories for each Epi
 * For users who already have an account, there is a link that will re-direct them to the login page.
 </details>
 
-#### **Logout Page**
+### **Logout Page**
 
 <details><summary>*Logout Page*</summary>
 
@@ -318,7 +318,7 @@ In order to support the functionalities defined in the user stories for each Epi
 * Displays a button to confirm the user's wish to log out. 
 </details>
 
-#### **Moviebox Page**
+### **Moviebox Page**
 
 <details><summary>*Moviebox Page*</summary>
 
@@ -334,7 +334,7 @@ In order to support the functionalities defined in the user stories for each Epi
 * Pagination at the bottom of the list allow users to browse through the catalogue of movies if there are more than 8 movies displayed.  
 </details>
 
-#### **Movie Details Page**
+### **Movie Details Page**
 
 <details><summary>*Movie Details*</summary>
 
@@ -360,7 +360,7 @@ In order to support the functionalities defined in the user stories for each Epi
 * The review button within the movie details above brings the user to this section of the page.
 </details>
 
-#### **My Watchlist Page**
+### **My Watchlist Page**
 
 <details><summary>*My Watchlist Section*</summary>
 
@@ -382,7 +382,7 @@ In order to support the functionalities defined in the user stories for each Epi
 * If the user clicks on 'Edit', they are re-directed to the edit review page.
 </details>
 
-#### **Admin Only Page**
+### **Admin Only Page**
 
 <details><summary>*Movie Approval Section*</summary>
 
@@ -397,7 +397,7 @@ In order to support the functionalities defined in the user stories for each Epi
 * The delete button will redirect to a confirmation page prior to removing it from the list. 
 </details>
 
-#### **404 Page**
+### **404 Page**
 
 <details><summary>*404 Page*</summary>
 
@@ -407,36 +407,36 @@ In order to support the functionalities defined in the user stories for each Epi
 * This page provides feedback that the page was not found in the style of the website. 
 </details>
 
-### **Future Features**
+## **Future Features**
 
-#### Watchlist
+### Watchlist
 
 * For the moment, and due to time constraints, users cannot add movies to other user's watchlist. 
 
-#### Social Media Signup/Login
+### Social Media Signup/Login
 
 * To allow guests to easily create an account using their favourite social media and to log in easily. 
 
-#### Admin Edit/Delete actions
+### Admin Edit/Delete actions
 
 * To have the admin to be able to take actions on movies that have already been approved. 
 
-#### Img converter
+### Img converter
 
 * For better performance and quicker rendering, to have uploaded images automatically converted to the WebP format and to limit the file sizes. 
 
-#### Improved styling 
+### Improved styling 
 
 * Further improve the style throughout the website to allow an even better user experience. Better responsive page and pagination. 
 
-#### Search functionality througout the website
+### Search functionality througout the website
 
 * To allow improved navigation, users should be able to search for movies from anywhere, not only in moviebox. 
 
 [Back to top](<#watchit---project-portfolio-4>)
 ---
 
-## **Technologies Used**
+# **Technologies Used**
 
 | Technology | Comment |
 | :---: | :--- |
@@ -467,14 +467,14 @@ In order to support the functionalities defined in the user stories for each Epi
 [Back to top](<#watchit---project-portfolio-4>)
 ---
 
-## **Testing**
+# **Testing**
 
 Please have a look at <a href="TESTING.md"> TESTING.md </a>.
 
 [Back to top](<#watchit---project-portfolio-4>)
 ---
 
-## **Deployment**
+# **Deployment**
 
 The master branch of this repository is the most current version and has been used for the deployed version of the site.
 
@@ -499,7 +499,7 @@ Use the following commands to commit your work,
 - [Git](https://git-scm.com/)
 - [Flask](https://flask.palletsprojects.com/en/2.2.x/)
 
-### Django Setup
+## Django Setup
 
 - Add your env variables to your env.py file. Add the `env.py` to the `.gitignore` to avoid disclosing any sensible information.
 - Install the project requirements - `pip3 install requirements.txt`
@@ -512,7 +512,7 @@ Use the following commands to commit your work,
 - Disable Heroku from collecting static files.
 - Add the hostname to project settings.py file: `ALLOWED_HOSTS = ['<you-app-name>.herokuapp.com', 'localhost']`.
 
-### Initial Heroku Deployment
+## Initial Heroku Deployment
 
 -   Navigate to [Heroku](https://www.heroku.com/).
 -   [Log in](https://id.heroku.com/login) or [Sign Up](https://signup.heroku.com/) for an account.
@@ -527,13 +527,19 @@ Use the following commands to commit your work,
 -   In the Settings tab, scroll down to `Reveal Config Vars` and copy the text in the box beside DATABASE_URL.
 
 
-## Credits
+# Credits
 
-[Willem Van Onsem](https://stackoverflow.com/users/67579/willem-van-onsem) for his answer in Stackoverflow for [How to make an average from values of a foreign key in Django?](https://stackoverflow.com/questions/59479908/how-to-make-an-average-from-values-of-a-foreign-key-in-django)
-[Racool_studio](https://www.freepik.com/free-photo/delicious-popcorn_6543855.htm#query=pile%20movies&position=28&from_view=search&track=sph) for the image used in the hero image. 
+* [Code Institute](https://codeinstitute.net/ie/) - 'I think therefore I blog' was a strong source of inspriation throughout the project. 
+* [Willem Van Onsem](https://stackoverflow.com/users/67579/willem-van-onsem) for his answer in Stackoverflow for [How to make an average from values of a foreign key in Django?](https://stackoverflow.com/questions/59479908/how-to-make-an-average-from-values-of-a-foreign-key-in-django)
+* [Racool_studio](https://www.freepik.com/free-photo/delicious-popcorn_6543855.htm#query=pile%20movies&position=28&from_view=search&track=sph) for the image used in the hero image. 
+* [Freepik](https://www.freepik.com/) - All images used througout the website (except movie posters)were taken from their creators.
 ---
 
-## **Credits**
+# **Acknowledgements**
+
+* My fiancée for being supportive throughout this programme.
+* Ronan for his help and feedback at the planning stage of the project.
+* Sean and Gemma (tutors) for helping me and reassuring me when I was panicking because I could't fix my url path or CSS. Real rockstars!
 
 
 [Back to top](<#watchit---project-portfolio-4>)
