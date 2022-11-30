@@ -429,6 +429,10 @@ In order to support the functionalities defined in the user stories for each Epi
 
 * Further improve the style throughout the website to allow an even better user experience. Better responsive page and pagination. 
 
+#### Search functionality througout the website
+
+* To allow improved navigation, users should be able to search for movies from anywhere, not only in moviebox. 
+
 [Back to top](<#watchit---project-portfolio-4>)
 ---
 
