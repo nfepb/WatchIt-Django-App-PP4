@@ -380,7 +380,7 @@ class EditMovieListing(UserPassesTestMixin, SuccessMessageMixin, UpdateView):
 
     def test_func(self):
         """
-        Checks if the current user = superuser 
+        Checks if the current user = superuser
         and allows access to template if yes
         """
         return self.request.user.is_superuser
